@@ -53,7 +53,7 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
             size++;
             return;
         }
-        add(root, newNode);
+        put(root, newNode);
     }
 
     public V get(K key) {
@@ -82,7 +82,7 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
     }
 
 
-    private void add(Node<K, V> parent, Node<K, V> newNode) {
+    private void put(Node<K, V> parent, Node<K, V> newNode) {
         if (newNode.key.compareTo(parent.key) > 0) {
             if (parent.right == null) {
                 parent.right = newNode;
@@ -91,7 +91,7 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
                 size++;
                 return;
             }
-            add(parent.right, newNode);
+            put(parent.right, newNode);
         } else if (newNode.key.compareTo(parent.key) < 0) {
             if (parent.left == null) {
                 parent.left = newNode;
@@ -100,7 +100,7 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
                 size++;
                 return;
             }
-            add(parent.left, newNode);
+            put(parent.left, newNode);
         }
         checkColor(newNode);
     }
@@ -117,7 +117,6 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
 
     private void correctTree(Node<K, V> node) {
         if (node.parent.isLeftChild) {
-            // aunt is grandparent right child
             if (node.parent.parent.right == null || node.parent.parent.right.color == BLACK) {
                 rotate(node);
                 return;
@@ -127,7 +126,6 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
             node.parent.color = BLACK;
             root.color = BLACK;
         } else {
-            // aunt is grandparent left child
             if (node.parent.parent.left == null || node.parent.parent.left.color == BLACK) {
                 rotate(node);
                 return;
@@ -173,11 +171,6 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
         }
     }
 
-    private void leftRightRotation(Node<K, V> node) {
-        leftRotation(node.left);
-        rightRotation(node);
-    }
-
     private void leftRotation(Node<K, V> node) {
         Node<K, V> temp = node.right;
         node.right = temp.left;
@@ -207,11 +200,6 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
     }
 
 
-    private void rightLeftRotation(Node<K, V> node) {
-        rightRotation(node.right);
-        leftRotation(node);
-    }
-
     private void rightRotation(Node<K, V> node) {
         Node<K, V> temp = node.left;
         node.left = temp.right;
@@ -239,6 +227,15 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
         node.parent = temp;
     }
 
+    private void rightLeftRotation(Node<K, V> node) {
+        rightRotation(node.right);
+        leftRotation(node);
+    }
+
+    private void leftRightRotation(Node<K, V> node) {
+        leftRotation(node.left);
+        rightRotation(node);
+    }
 
     @Override
     public boolean remove(K key) {
