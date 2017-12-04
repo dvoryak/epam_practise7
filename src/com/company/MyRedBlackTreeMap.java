@@ -73,7 +73,7 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
                     if(curr == null) break;
                 }
                 if(curr.key.equals(key)) {
-                    System.out.println(curr.isLeftChild ? "left" : "right" + " " + curr.color);
+                    System.out.println((curr.isLeftChild ? "left" : "right") + " " + curr.color);
                     return curr.value;
                 }
             }
