@@ -1,4 +1,4 @@
-package com.company;
+package com.company.task3;
 
 public interface IRedBlackTreeMap<K extends Comparable<K> ,V> {
 

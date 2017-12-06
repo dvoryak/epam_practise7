@@ -1,7 +1,7 @@
-package com.company;
+package com.company.task3;
 
-import static com.company.MyRedBlackTreeMap.Color.BLACK;
-import static com.company.MyRedBlackTreeMap.Color.RED;
+import static com.company.task3.MyRedBlackTreeMap.Color.BLACK;
+import static com.company.task3.MyRedBlackTreeMap.Color.RED;
 
 
 public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackTreeMap<K, V> {
