@@ -9,7 +9,7 @@ public class Main {
             map.put(i,i);
         }
 
-        System.out.println(map.get(1000));
+        System.out.println(map.get(111));
 
     }
 }
