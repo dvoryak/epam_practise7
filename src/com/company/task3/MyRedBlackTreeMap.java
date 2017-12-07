@@ -1,5 +1,8 @@
 package com.company.task3;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static com.company.task3.MyRedBlackTreeMap.Color.BLACK;
 import static com.company.task3.MyRedBlackTreeMap.Color.RED;
 
@@ -30,17 +33,9 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
 
         }
 
-        public K getKey() {
-            return key;
-        }
-
-        public V getValue() {
-            return value;
-        }
-
         @Override
         public String toString() {
-            return key + " : " + value;
+            return key + "=" + value;
         }
     }
 
@@ -241,6 +236,39 @@ public class MyRedBlackTreeMap<K extends Comparable<K>, V> implements IRedBlackT
     public boolean remove(K key) {
         throw new UnsupportedOperationException();
     }
+
+    public void printTreeQueue() {
+        Queue<Node<K,V>> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node<K,V> curr = queue.remove();
+            System.out.println(curr);
+            if(curr.left != null){
+                queue.add(curr.left);
+            }
+            if(curr.right != null) {
+                queue.add(curr.right);
+            }
+        }
+    }
+
+    public void printTree() {
+        Node<K,V> current = root;
+        printTree(current,0);
+    }
+
+    private void printTree(Node<K,V> node, int level) {
+        if(node != null) {
+            for(int i = 0; i < level; i++) {
+                System.out.print(" ");
+            }
+            System.out.println(node.key+ "(" + node.color + ")");
+            level++;
+            printTree(node.left,level);
+            printTree(node.right,level);
+        }
+    }
+
 
     @Override
     public int size() {
