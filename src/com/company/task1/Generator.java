@@ -8,7 +8,7 @@ public class Generator {
         checkOf(count, from, to);
         ArrayList<Integer> out = new ArrayList<>(count);
         for(int i = 0; i < count; i++) {
-            out.add((new Random().nextInt(to - from) + from));
+            out.add((new Random().nextInt(to - from + 1) + from));
         }
         return out;
     }
@@ -17,7 +17,7 @@ public class Generator {
         checkOf(count, from, to);
         Set<Integer> out = new HashSet<>(count);
         while(out.size() != count) {
-            out.add((new Random().nextInt(to - from) + from));
+            out.add((new Random().nextInt(to - from  + 1) + from));
         }
         return out;
     }
